@@ -2,14 +2,26 @@ pub struct HelloWorld {
     counter: u32,
 }
 
-pub fn say(hello_world: &HelloWorld) {
-    println!("カウンター値は{}", hello_world.counter);
-}
+impl HelloWorld {
+    pub fn new(counter: u32) -> Self {
+        HelloWorld { counter }
+    }
 
-pub fn new_hello_world(counter: u32) -> HelloWorld {
-    HelloWorld { counter }
-}
+    // 所有権が移動
+    pub fn into_u32(self) -> u32 {
+        self.counter
+    }
 
-pub fn countup(hello_world: &mut HelloWorld) {
-    hello_world.counter += 1;
+    pub fn say(&self) {
+        println!("カウンター値は{}", self.counter);
+    }
+    pub fn countup(&mut self) {
+        self.counter += 1;
+    }
+
+    // 第1引数がself か&mut self であれば自身のメソッドを呼び出せる。
+    pub fn greet(&mut self){
+        self.countup();
+        self.say();
+    }
 }
