@@ -1,5 +1,18 @@
+#[derive(Debug)]
 pub struct HelloWorld {
     counter: u32,
+}
+
+impl Into<u32> for HelloWorld {
+    fn into(self) -> u32 {
+        self.into_u32()
+    }
+}
+
+impl Into<u64> for HelloWorld {
+    fn into(self) -> u64 {
+        self.into_u32() as u64 // into_u32の返り値をu64にキャスト
+    }
 }
 
 impl HelloWorld {
@@ -20,7 +33,7 @@ impl HelloWorld {
     }
 
     // 第1引数がself か&mut self であれば自身のメソッドを呼び出せる。
-    pub fn greet(&mut self){
+    pub fn greet(&mut self) {
         self.countup();
         self.say();
     }

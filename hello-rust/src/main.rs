@@ -1,7 +1,7 @@
 mod hello_world;
 
 fn main() {
-    let mut hello_world = hello_world::HelloWorld::new(0);
+    let mut hello_world = hello_world::HelloWorld::new(10);
     hello_world.say();
     hello_world.countup();
     hello_world.say();
@@ -13,4 +13,5 @@ fn main() {
 
     println!("counter {}", counter);
 
+    // println!("{:#?}", hello_world);
 }
