@@ -1,4 +1,6 @@
-use std::{num::ParseIntError, str::FromStr};
+use std::{io::stdout, num::ParseIntError, str::FromStr};
+use ferris_says::say;
+
 
 #[derive(Debug)]
 pub struct HelloWorld {
@@ -50,7 +52,12 @@ impl HelloWorld {
     }
 
     pub fn say(&self) {
-        println!("{}({}回目)", self.message, self.counter);
+        let message = format!("{}({}回目)",self.message, self.counter);
+        let writer = stdout();
+        if let Err(e) = say(&message, message.len(),writer){
+            println!("{}", e);
+        };
+
     }
     pub fn countup(&mut self) {
         self.counter += 1;
