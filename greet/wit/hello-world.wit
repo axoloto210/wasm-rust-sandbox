@@ -1,0 +1,10 @@
+package axoloto210:greet;
+
+interface sayable {
+    say: func() -> string;
+}
+
+world hello-world{
+    import greetable;
+    export sayable;
+}
