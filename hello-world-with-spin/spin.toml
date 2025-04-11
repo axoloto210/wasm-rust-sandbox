@@ -1,0 +1,33 @@
+spin_manifest_version = 2
+
+[application]
+name = "hello-world-with-spin"
+version = "0.1.0"
+authors = ["axoloto210 <142103380+axoloto210@users.noreply.github.com>"]
+description = ""
+
+[component.hello-world]
+source = "../hello-wasi-http/target/wasm32-wasip1/debug/hello_wasi_http.wasm"
+
+[[trigger.http]]
+component = "hello-world"
+route = "/hello-world/..."
+
+[[trigger.http]]
+route = "/echo/..."
+component = "echo"
+
+[component.echo]
+source = "echo/target/wasm32-wasip1/release/echo.wasm"
+allowed_outbound_hosts = []
+[component.echo.build]
+command = "cargo build --target wasm32-wasip1 --release"
+workdir = "echo"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[[trigger.http]]
+route = "/glitch"
+component = "glitch"
+
+[component.glitch]
+source = "../glitch-art-api/first-glitch-art-api.wasm"

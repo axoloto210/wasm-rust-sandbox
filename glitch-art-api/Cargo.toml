@@ -1,0 +1,19 @@
+[package]
+name = "glitch-art-api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.97"
+png-glitch = "0.5.0"
+spin-sdk = "3.1.0"
+wit-bindgen-rt = { version = "0.41.0", features = ["bitflags"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[package.metadata.component]
+package = "axoloto210:glitch-art-api"
+target = "axoloto210:glitch-art/png-glitch-cli@0.1.0"
+
+[package.metadata.component.dependencies]
